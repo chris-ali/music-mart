@@ -1,7 +1,7 @@
 /target/
-.bak
-.pdf
-.classpath
-.project
-.zip
+*.bak
+*.pdf
+*.classpath
+*.project
+*.zip
 /.settings/

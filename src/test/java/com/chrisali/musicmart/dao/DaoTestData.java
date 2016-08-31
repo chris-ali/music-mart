@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.chrisali.musicmart.model.Country;
 import com.chrisali.musicmart.model.product.Product;
@@ -13,12 +14,13 @@ import com.chrisali.musicmart.model.user.BasketItem;
 import com.chrisali.musicmart.model.user.User;
 
 @Component
+@ActiveProfiles("test")
 public class DaoTestData {
 	
 	// Users
 	protected User user1 = new User("Chris", "Ali", "chrisali@test.com", "test1", true, "ROLE_ADMIN");
-	protected User user2 = new User("Sohpie", "Frueh", "sophiefrueh@test.com", "test2", true, "ROLE_USER");
-	protected User user3 = new User("Tadashi", "Saya", "tadashisaya@test.com", "test3", true, "ROLE_USER");
+	protected User user2 = new User("Sohpie", "Frueh", "sophiefrueh@test.de", "test2", true, "ROLE_USER");
+	protected User user3 = new User("Tadashi", "Saya", "tadashisaya@test.jp", "test3", true, "ROLE_USER");
 	
 	// Countries
 	protected Country country1 = new Country("United States", "US", "USA");
@@ -70,12 +72,12 @@ public class DaoTestData {
 		countriesDao.createOrUpdate(country2);
 		countriesDao.createOrUpdate(country3);
 		
-		addressBookDao.createOrUpdate(address1);
-		addressBookDao.createOrUpdate(address2);
-		addressBookDao.createOrUpdate(address3);
-		
-		basketItemsDao.createOrUpdate(item1);
-		basketItemsDao.createOrUpdate(item2);
-		basketItemsDao.createOrUpdate(item3);
+//		addressBookDao.createOrUpdate(address1);
+//		addressBookDao.createOrUpdate(address2);
+//		addressBookDao.createOrUpdate(address3);
+//		
+//		basketItemsDao.createOrUpdate(item1);
+//		basketItemsDao.createOrUpdate(item2);
+//		basketItemsDao.createOrUpdate(item3);
 	}
 }

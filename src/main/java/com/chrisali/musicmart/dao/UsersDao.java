@@ -50,7 +50,7 @@ public class UsersDao extends AbstractDao {
 		Criteria criteria = getSession().createCriteria(User.class)
 										.setMaxResults(resultsSize)
 										.setFirstResult(pageNumber * resultsSize)
-										.addOrder(Order.asc("last_name"));
+										.addOrder(Order.asc("lastName"));
 		
 		List<User> users = criteria.list();
 		

@@ -6,11 +6,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import javax.validation.constraints.Size;
 
 import com.chrisali.musicmart.model.product.Product;
@@ -20,15 +20,15 @@ import com.chrisali.musicmart.model.product.Product;
 public class BasketItem {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id")
+	@JoinColumn(name="users_id", referencedColumnName="id")
 	private User user;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id")
+	@JoinColumn(name="products_id", referencedColumnName="id")
 	private Product product;
 
 	@Size(min=1, max=99)

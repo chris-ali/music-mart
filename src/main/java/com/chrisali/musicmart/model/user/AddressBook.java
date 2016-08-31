@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ public class AddressBook implements Serializable {
 	private static final long serialVersionUID = 8773280814073481778L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@NotBlank
@@ -59,11 +60,11 @@ public class AddressBook implements Serializable {
 	private String phoneNumber;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="country")
+	@JoinColumn(name="countres_id", referencedColumnName="id")
 	private Country country;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="id")
+	@JoinColumn(name="users_id", referencedColumnName="id")
 	private User user;
 	
 	public AddressBook() {

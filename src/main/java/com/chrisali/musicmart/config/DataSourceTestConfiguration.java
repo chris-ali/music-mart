@@ -53,7 +53,10 @@ public class DataSourceTestConfiguration {
 			private static final long serialVersionUID = 9057467730041849300L;
 			{
 				setProperty("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
-				setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
+				//setProperty("hibernate.hbm2ddl.auto", env.getProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
+				setProperty("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
+				setProperty("hibernate.format_sql", env.getProperty("spring.jpa.format-sql"));
+				setProperty("hibernate.use_sql_comments", env.getProperty("spring.jpa.use-sql-comments"));
 			}
 		};
 	}

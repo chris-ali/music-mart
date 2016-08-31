@@ -5,3 +5,4 @@
 *.project
 *.zip
 /.settings/
+/.apt_generated/

@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -42,10 +41,10 @@ public class AddressesDao extends AbstractDao {
 	@SuppressWarnings("unchecked")
 	public List<Address> getPaginatedAddresses(int users_id, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(Address.class)
-										.add(Restrictions.idEq(users_id))
+										.createAlias("user", "u")
+										.add(Restrictions.eq("u.id", users_id))
 										.setMaxResults(resultsSize)
-										.setFirstResult(pageNumber * resultsSize)
-										.addOrder(Order.desc("date_added"));
+										.setFirstResult(pageNumber * resultsSize);
 
 		List<Address> items = criteria.list();
 		

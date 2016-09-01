@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.chrisali.musicmart.model.Country;
 import com.chrisali.musicmart.model.product.Product;
 
-//@Entity
+@Entity
 @Table(name = "orders")
 public class Order implements Serializable {
 
@@ -148,11 +148,11 @@ public class Order implements Serializable {
 	@Column(name = "comments")
 	private String comments;
 	
-	@ManyToMany(mappedBy = "orders")
+	@ManyToMany
 	private List<Country> countries;
 	
-	@ManyToMany(mappedBy = "products")
-	private List<Product> products;
+//	@ManyToMany(mappedBy = "products")
+//	private List<Product> products;
 
 	public Order() {}
 
@@ -388,210 +388,14 @@ public class Order implements Serializable {
 		this.countries = countries;
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
+//	public List<Product> getProducts() {
+//		return products;
+//	}
+//
+//	public void setProducts(List<Product> products) {
+//		this.products = products;
+//	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	@Override
-	public String toString() {
-		return "Order [id=" + id + ", billingName=" + billingName + ", billingAddress1=" + billingAddress1
-				+ ", billingAddress2=" + billingAddress2 + ", billingCity=" + billingCity + ", billingStateProvince="
-				+ billingStateProvince + ", billingPostalCode=" + billingPostalCode + ", billingPhoneNumber="
-				+ billingPhoneNumber + ", billingEmail=" + billingEmail + ", shippingName=" + shippingName
-				+ ", shippingAddress1=" + shippingAddress1 + ", shippingAddress2=" + shippingAddress2
-				+ ", shippingCity=" + shippingCity + ", shippingStateProvince=" + shippingStateProvince
-				+ ", shippingPostalCode=" + shippingPostalCode + ", shippingPhoneNumber=" + shippingPhoneNumber
-				+ ", paymentMethod=" + paymentMethod + ", creditCardType=" + creditCardType + ", creditCardName="
-				+ creditCardName + ", creditCardNumber=" + creditCardNumber + ", creditCardExpiration="
-				+ creditCardExpiration + ", datePurchased=" + datePurchased + ", lastModified=" + lastModified
-				+ ", shippingCost=" + shippingCost + ", shippingMethod=" + shippingMethod + ", orderStatus="
-				+ orderStatus + ", orderCompleted=" + orderCompleted + ", comments=" + comments + ", countries="
-				+ countries + ", products=" + products + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((billingAddress1 == null) ? 0 : billingAddress1.hashCode());
-		result = prime * result + ((billingAddress2 == null) ? 0 : billingAddress2.hashCode());
-		result = prime * result + ((billingCity == null) ? 0 : billingCity.hashCode());
-		result = prime * result + ((billingEmail == null) ? 0 : billingEmail.hashCode());
-		result = prime * result + ((billingName == null) ? 0 : billingName.hashCode());
-		result = prime * result + ((billingPhoneNumber == null) ? 0 : billingPhoneNumber.hashCode());
-		result = prime * result + ((billingPostalCode == null) ? 0 : billingPostalCode.hashCode());
-		result = prime * result + ((billingStateProvince == null) ? 0 : billingStateProvince.hashCode());
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((countries == null) ? 0 : countries.hashCode());
-		result = prime * result + ((creditCardExpiration == null) ? 0 : creditCardExpiration.hashCode());
-		result = prime * result + ((creditCardName == null) ? 0 : creditCardName.hashCode());
-		result = prime * result + ((creditCardNumber == null) ? 0 : creditCardNumber.hashCode());
-		result = prime * result + ((creditCardType == null) ? 0 : creditCardType.hashCode());
-		result = prime * result + ((datePurchased == null) ? 0 : datePurchased.hashCode());
-		result = prime * result + ((lastModified == null) ? 0 : lastModified.hashCode());
-		result = prime * result + ((orderCompleted == null) ? 0 : orderCompleted.hashCode());
-		result = prime * result + ((orderStatus == null) ? 0 : orderStatus.hashCode());
-		result = prime * result + ((paymentMethod == null) ? 0 : paymentMethod.hashCode());
-		result = prime * result + ((products == null) ? 0 : products.hashCode());
-		result = prime * result + ((shippingAddress1 == null) ? 0 : shippingAddress1.hashCode());
-		result = prime * result + ((shippingAddress2 == null) ? 0 : shippingAddress2.hashCode());
-		result = prime * result + ((shippingCity == null) ? 0 : shippingCity.hashCode());
-		result = prime * result + Float.floatToIntBits(shippingCost);
-		result = prime * result + ((shippingMethod == null) ? 0 : shippingMethod.hashCode());
-		result = prime * result + ((shippingName == null) ? 0 : shippingName.hashCode());
-		result = prime * result + ((shippingPhoneNumber == null) ? 0 : shippingPhoneNumber.hashCode());
-		result = prime * result + ((shippingPostalCode == null) ? 0 : shippingPostalCode.hashCode());
-		result = prime * result + ((shippingStateProvince == null) ? 0 : shippingStateProvince.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order other = (Order) obj;
-		if (billingAddress1 == null) {
-			if (other.billingAddress1 != null)
-				return false;
-		} else if (!billingAddress1.equals(other.billingAddress1))
-			return false;
-		if (billingAddress2 == null) {
-			if (other.billingAddress2 != null)
-				return false;
-		} else if (!billingAddress2.equals(other.billingAddress2))
-			return false;
-		if (billingCity == null) {
-			if (other.billingCity != null)
-				return false;
-		} else if (!billingCity.equals(other.billingCity))
-			return false;
-		if (billingEmail == null) {
-			if (other.billingEmail != null)
-				return false;
-		} else if (!billingEmail.equals(other.billingEmail))
-			return false;
-		if (billingName == null) {
-			if (other.billingName != null)
-				return false;
-		} else if (!billingName.equals(other.billingName))
-			return false;
-		if (billingPhoneNumber == null) {
-			if (other.billingPhoneNumber != null)
-				return false;
-		} else if (!billingPhoneNumber.equals(other.billingPhoneNumber))
-			return false;
-		if (billingPostalCode == null) {
-			if (other.billingPostalCode != null)
-				return false;
-		} else if (!billingPostalCode.equals(other.billingPostalCode))
-			return false;
-		if (billingStateProvince == null) {
-			if (other.billingStateProvince != null)
-				return false;
-		} else if (!billingStateProvince.equals(other.billingStateProvince))
-			return false;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
-		if (countries == null) {
-			if (other.countries != null)
-				return false;
-		} else if (!countries.equals(other.countries))
-			return false;
-		if (creditCardExpiration == null) {
-			if (other.creditCardExpiration != null)
-				return false;
-		} else if (!creditCardExpiration.equals(other.creditCardExpiration))
-			return false;
-		if (creditCardName == null) {
-			if (other.creditCardName != null)
-				return false;
-		} else if (!creditCardName.equals(other.creditCardName))
-			return false;
-		if (creditCardNumber == null) {
-			if (other.creditCardNumber != null)
-				return false;
-		} else if (!creditCardNumber.equals(other.creditCardNumber))
-			return false;
-		if (creditCardType != other.creditCardType)
-			return false;
-		if (datePurchased == null) {
-			if (other.datePurchased != null)
-				return false;
-		} else if (!datePurchased.equals(other.datePurchased))
-			return false;
-		if (lastModified == null) {
-			if (other.lastModified != null)
-				return false;
-		} else if (!lastModified.equals(other.lastModified))
-			return false;
-		if (orderCompleted == null) {
-			if (other.orderCompleted != null)
-				return false;
-		} else if (!orderCompleted.equals(other.orderCompleted))
-			return false;
-		if (orderStatus != other.orderStatus)
-			return false;
-		if (paymentMethod == null) {
-			if (other.paymentMethod != null)
-				return false;
-		} else if (!paymentMethod.equals(other.paymentMethod))
-			return false;
-		if (products == null) {
-			if (other.products != null)
-				return false;
-		} else if (!products.equals(other.products))
-			return false;
-		if (shippingAddress1 == null) {
-			if (other.shippingAddress1 != null)
-				return false;
-		} else if (!shippingAddress1.equals(other.shippingAddress1))
-			return false;
-		if (shippingAddress2 == null) {
-			if (other.shippingAddress2 != null)
-				return false;
-		} else if (!shippingAddress2.equals(other.shippingAddress2))
-			return false;
-		if (shippingCity == null) {
-			if (other.shippingCity != null)
-				return false;
-		} else if (!shippingCity.equals(other.shippingCity))
-			return false;
-		if (Float.floatToIntBits(shippingCost) != Float.floatToIntBits(other.shippingCost))
-			return false;
-		if (shippingMethod != other.shippingMethod)
-			return false;
-		if (shippingName == null) {
-			if (other.shippingName != null)
-				return false;
-		} else if (!shippingName.equals(other.shippingName))
-			return false;
-		if (shippingPhoneNumber == null) {
-			if (other.shippingPhoneNumber != null)
-				return false;
-		} else if (!shippingPhoneNumber.equals(other.shippingPhoneNumber))
-			return false;
-		if (shippingPostalCode == null) {
-			if (other.shippingPostalCode != null)
-				return false;
-		} else if (!shippingPostalCode.equals(other.shippingPostalCode))
-			return false;
-		if (shippingStateProvince == null) {
-			if (other.shippingStateProvince != null)
-				return false;
-		} else if (!shippingStateProvince.equals(other.shippingStateProvince))
-			return false;
-		return true;
-	}
+	
 	
 }

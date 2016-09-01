@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.chrisali.musicmart.model.order.Order;
 import com.chrisali.musicmart.model.user.Address;
 
 /**
@@ -48,8 +50,8 @@ public class Country implements Serializable {
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
 	private List<Address> addresses;
 	
-	//@ManyToMany(mappedBy = "countries", cascade = CascadeType.ALL)
-	//private List<Order> orders;
+	@ManyToMany(mappedBy = "countries", cascade = CascadeType.ALL)
+	private List<Order> orders;
 	
 	public Country() {}
 
@@ -97,6 +99,14 @@ public class Country implements Serializable {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override

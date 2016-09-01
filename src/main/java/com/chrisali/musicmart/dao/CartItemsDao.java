@@ -40,12 +40,13 @@ public class CartItemsDao extends AbstractDao {
 	 * @return paginated List of all {@link CartItem} in database belonging to {@link User} using Hibernate Criteria 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<CartItem> getPaginatedCartItems(int users_id, int pageNumber, int resultsSize) {
+	public List<CartItem> getPaginatedCartItemsForUser(int users_id, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(CartItem.class)
-										.add(Restrictions.idEq(users_id))
+										.createAlias("user", "u")
+										.add(Restrictions.eq("u.id", users_id))
 										.setMaxResults(resultsSize)
 										.setFirstResult(pageNumber * resultsSize)
-										.addOrder(Order.desc("date_added"));
+										.addOrder(Order.desc("dateAdded"));
 
 		List<CartItem> items = criteria.list();
 		

@@ -3,7 +3,6 @@ package com.chrisali.musicmart.model.user;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 import com.chrisali.musicmart.model.product.Product;
 
@@ -23,18 +23,18 @@ public class CartItem implements Serializable {
 	private static final long serialVersionUID = 7686804371920353594L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "users_id", referencedColumnName = "id")
 	private User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "products_id", referencedColumnName = "id")
 	private Product product;
 
-	@Size(min=1, max=99)
+	@Range(min=1, max=99)
 	private int quantity;
 	
 	@Column(name="total_price")
@@ -43,13 +43,17 @@ public class CartItem implements Serializable {
 	@Column(name="date_added")
 	private Date dateAdded;
 
-	public CartItem() {}
+	public CartItem() {
+		this.user = new User();
+		this.dateAdded = new Date();
+	}
 
 	public CartItem(User user, Product product, int quantity, float totalPrice) {
 		this.user = user;
 		this.product = product;
 		this.quantity = quantity;
 		this.totalPrice = totalPrice;
+		this.dateAdded = new Date();
 	}
 
 	public int getId() {

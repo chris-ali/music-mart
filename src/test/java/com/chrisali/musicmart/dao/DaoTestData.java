@@ -39,9 +39,9 @@ public class DaoTestData {
 	protected Address address9 = new Address("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "8162-431-2300", country3, user3);
 	
 	// Items
-	protected CartItem item1 = new CartItem(user1, new Product(), 1, 29.95f);
-	protected CartItem item2 = new CartItem(user2, new Product(), 3, 33.00f);
-	protected CartItem item3 = new CartItem(user3, new Product(), 4, 1120.00f);
+	protected CartItem cartItem1 = new CartItem(user1, new Product(), 1, 29.95f);
+	protected CartItem cartItem2 = new CartItem(user2, new Product(), 3, 33.00f);
+	protected CartItem cartItem3 = new CartItem(user3, new Product(), 4, 1120.00f);
 	
 	// DAO
 	@Autowired
@@ -51,10 +51,10 @@ public class DaoTestData {
 	protected CountriesDao countriesDao;
 	
 	@Autowired
-	protected AddressesDao addressBookDao;
+	protected AddressesDao addressesDao;
 	
 	@Autowired
-	protected CartItemsDao basketItemsDao;
+	protected CartItemsDao cartItemsDao;
 	
 	// Database Setup
 	@Autowired
@@ -78,18 +78,18 @@ public class DaoTestData {
 		countriesDao.createOrUpdate(country2);
 		countriesDao.createOrUpdate(country3);
 		
-		addressBookDao.createOrUpdate(address1);
-		addressBookDao.createOrUpdate(address2);
-		addressBookDao.createOrUpdate(address3);
-		addressBookDao.createOrUpdate(address4);
-		addressBookDao.createOrUpdate(address5);
-		addressBookDao.createOrUpdate(address6);
-		addressBookDao.createOrUpdate(address7);
-		addressBookDao.createOrUpdate(address8);
-		addressBookDao.createOrUpdate(address9);
+		addressesDao.createOrUpdate(address1);
+		addressesDao.createOrUpdate(address2);
+		addressesDao.createOrUpdate(address3);
+		addressesDao.createOrUpdate(address4);
+		addressesDao.createOrUpdate(address5);
+		addressesDao.createOrUpdate(address6);
+		addressesDao.createOrUpdate(address7);
+		addressesDao.createOrUpdate(address8);
+		addressesDao.createOrUpdate(address9);
 		
-//		basketItemsDao.createOrUpdate(item1);
-//		basketItemsDao.createOrUpdate(item2);
-//		basketItemsDao.createOrUpdate(item3);
+		cartItemsDao.createOrUpdate(cartItem1);
+		cartItemsDao.createOrUpdate(cartItem2);
+		cartItemsDao.createOrUpdate(cartItem3);
 	}
 }

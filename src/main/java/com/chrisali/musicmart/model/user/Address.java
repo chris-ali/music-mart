@@ -2,7 +2,6 @@ package com.chrisali.musicmart.model.user;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 8773280814073481778L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotBlank
@@ -57,11 +56,11 @@ public class Address implements Serializable {
 	@Column(name="phone_number")
 	private String phoneNumber;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "countries_id", referencedColumnName = "id")
 	private Country country;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="users_id", referencedColumnName = "id")
 	private User user;
 	

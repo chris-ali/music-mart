@@ -7,15 +7,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.chrisali.musicmart.model.order.Order;
 import com.chrisali.musicmart.model.user.Address;
 
 /**
@@ -31,7 +30,7 @@ public class Country implements Serializable {
 	private static final long serialVersionUID = 7315294166485587215L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotBlank
@@ -46,7 +45,7 @@ public class Country implements Serializable {
 	@Size(min=3, max=3)
 	private String isoCode3;
 	
-	@OneToMany(mappedBy = "country")
+	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
 	private List<Address> addresses;
 	
 	//@ManyToMany(mappedBy = "countries", cascade = CascadeType.ALL)

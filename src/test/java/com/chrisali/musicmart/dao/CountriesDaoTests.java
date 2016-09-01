@@ -52,8 +52,6 @@ public class CountriesDaoTests extends DaoTestData implements DaoTests {
 		Country noExist = new Country("Nowhere", "NOW", "NO");
 		noExist.setId(Integer.MAX_VALUE);
 		
-		countriesDao.createOrUpdate(noExist);
-		
 		assertFalse("country should not exist in database", countriesDao.exists(noExist.getId()));
 	}
 

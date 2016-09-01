@@ -50,8 +50,6 @@ public class UsersDaoTests extends DaoTestData implements DaoTests {
 		User noExist = new User("Nobody", "No One", "nobody@test.com", "nope", false, "ROLE_USER");
 		noExist.setId(Integer.MAX_VALUE);
 		
-		usersDao.createOrUpdate(noExist);
-		
 		assertFalse("User should not exist in database", usersDao.exists(noExist.getId()));
 	}
 

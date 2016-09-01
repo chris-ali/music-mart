@@ -62,8 +62,6 @@ public class AddressDaoTests extends DaoTestData implements DaoTests {
 		Address noExist = new Address("Nobody", "131 Nowhere St", "", "Detroid", "Michigan", "48201", "555-555-8989", country1, user3);
 		noExist.setId(Integer.MAX_VALUE);
 		
-		addressBookDao.createOrUpdate(noExist);
-		
 		assertFalse("country should not exist in database", addressBookDao.exists(noExist.getId()));
 	}
 

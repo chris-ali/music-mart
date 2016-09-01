@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = -7658672627132098553L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotBlank
@@ -57,7 +57,6 @@ public class User implements Serializable {
 	@Column(name="old_password")
 	private String oldPassword;
 	
-	@NotBlank
 	private boolean enabled;
 	
 	@NotBlank

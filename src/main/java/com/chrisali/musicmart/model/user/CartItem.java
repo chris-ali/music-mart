@@ -1,5 +1,6 @@
 package com.chrisali.musicmart.model.user;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -16,19 +17,21 @@ import javax.validation.constraints.Size;
 import com.chrisali.musicmart.model.product.Product;
 
 @Entity
-@Table(name="basket_item")
-public class BasketItem {
+@Table(name="cart_items")
+public class CartItem implements Serializable {
 	
+	private static final long serialVersionUID = 7686804371920353594L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="users_id", referencedColumnName="id")
+	@JoinColumn(name = "users_id", referencedColumnName = "id")
 	private User user;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="products_id", referencedColumnName="id")
+	@JoinColumn(name = "products_id", referencedColumnName = "id")
 	private Product product;
 
 	@Size(min=1, max=99)
@@ -40,9 +43,9 @@ public class BasketItem {
 	@Column(name="date_added")
 	private Date dateAdded;
 
-	public BasketItem() {}
+	public CartItem() {}
 
-	public BasketItem(User user, Product product, int quantity, float totalPrice) {
+	public CartItem(User user, Product product, int quantity, float totalPrice) {
 		this.user = user;
 		this.product = product;
 		this.quantity = quantity;
@@ -115,7 +118,7 @@ public class BasketItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BasketItem other = (BasketItem) obj;
+		CartItem other = (CartItem) obj;
 		if (dateAdded == null) {
 			if (other.dateAdded != null)
 				return false;

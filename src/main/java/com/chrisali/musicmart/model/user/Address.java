@@ -17,11 +17,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import com.chrisali.musicmart.model.Country;
 
-
-
 @Entity
-@Table(name="address_book")
-public class AddressBook implements Serializable {
+@Table(name="addresses")
+public class Address implements Serializable {
 
 	private static final long serialVersionUID = 8773280814073481778L;
 
@@ -60,19 +58,19 @@ public class AddressBook implements Serializable {
 	private String phoneNumber;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="countres_id", referencedColumnName="id")
+	@JoinColumn(name = "countries_id", referencedColumnName = "id")
 	private Country country;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="users_id", referencedColumnName="id")
+	@JoinColumn(name="users_id", referencedColumnName = "id")
 	private User user;
 	
-	public AddressBook() {
+	public Address() {
 		this.user = new User();
 		this.country = new Country();
 	}
 
-	public AddressBook(String name, String addressLine1, String addressLine2, String city, String stateProvince,
+	public Address(String name, String addressLine1, String addressLine2, String city, String stateProvince,
 			String postalCode, String phoneNumber, Country country, User user) {
 		this.name = name;
 		this.addressLine1 = addressLine1;

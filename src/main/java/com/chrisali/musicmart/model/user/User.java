@@ -1,12 +1,15 @@
 package com.chrisali.musicmart.model.user;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Pattern;
@@ -54,10 +57,15 @@ public class User implements Serializable {
 	@Column(name="old_password")
 	private String oldPassword;
 	
+	@NotBlank
 	private boolean enabled;
 	
+	@NotBlank
 	private String authority;
-
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Address> addresses;
+	
 	public User() {}
 
 	public User(String firstName, String lastName, String email, String rawPassword,
@@ -102,14 +110,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public int getAddress() {
+	public int getDefaultAddress() {
 		return defaultAddress;
 	}
-
-	public void setAddress(int defaultAddress) {
+	
+	public void setDefaultAddress(int defaultAddress) {
 		this.defaultAddress = defaultAddress;
 	}
-
+	
 	public String getPassword() {
 		return password;
 	}
@@ -148,6 +156,14 @@ public class User implements Serializable {
 
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	@Override

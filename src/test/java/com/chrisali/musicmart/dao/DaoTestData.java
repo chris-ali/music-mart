@@ -9,8 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.chrisali.musicmart.model.Country;
 import com.chrisali.musicmart.model.product.Product;
-import com.chrisali.musicmart.model.user.AddressBook;
-import com.chrisali.musicmart.model.user.BasketItem;
+import com.chrisali.musicmart.model.user.Address;
+import com.chrisali.musicmart.model.user.CartItem;
 import com.chrisali.musicmart.model.user.User;
 
 @Component
@@ -28,14 +28,20 @@ public class DaoTestData {
 	protected Country country3 = new Country("Japan", "JP", "JPN");
 	
 	// Addresses
-	protected AddressBook address1 = new AddressBook("Chris Ali", "8 Allerton Way", "", "East Windsor", "New Jersey", "08520", "609-651-2054", country1, user1);
-	protected AddressBook address2 = new AddressBook("Sophia Frueh", "Inge Beisheim Platz 95", "", "Amelinghausen", "Niedersachsen", "21385", "04132 76 12 71", country2, user2);
-	protected AddressBook address3 = new AddressBook("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "+8162-431-2300", country3, user3);
+	protected Address address1 = new Address("Chris Ali", "1 Lockwood Lane", "", "East Windsor", "New Jersey", "08521", "609-631-2654", country1, user1);
+	protected Address address2 = new Address("Sophia Frueh", "Inge Beisheim Platz 95", "", "Amelinghausen", "Niedersachsen", "21385", "04132 76 12 71", country2, user1);
+	protected Address address3 = new Address("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "8162-431-2300", country3, user1);
+	protected Address address4 = new Address("Chris Ali", "2 Lockwood Lane", "", "East Windsor", "New Jersey", "08521", "609-631-2654", country1, user2);
+	protected Address address5 = new Address("Sophia Frueh", "Inge Beisheim Platz 95", "", "Amelinghausen", "Niedersachsen", "21385", "04132 76 12 71", country2, user2);
+	protected Address address6 = new Address("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "8162-431-2300", country3, user2);
+	protected Address address7 = new Address("Chris Ali", "3 Lockwood Lane", "", "East Windsor", "New Jersey", "08521", "609-631-2654", country1, user3);
+	protected Address address8 = new Address("Sophia Frueh", "Inge Beisheim Platz 95", "", "Amelinghausen", "Niedersachsen", "21385", "04132 76 12 71", country2, user3);
+	protected Address address9 = new Address("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "8162-431-2300", country3, user3);
 	
 	// Items
-	protected BasketItem item1 = new BasketItem(user1, new Product(), 1, 29.95f);
-	protected BasketItem item2 = new BasketItem(user2, new Product(), 3, 33.00f);
-	protected BasketItem item3 = new BasketItem(user3, new Product(), 4, 1120.00f);
+	protected CartItem item1 = new CartItem(user1, new Product(), 1, 29.95f);
+	protected CartItem item2 = new CartItem(user2, new Product(), 3, 33.00f);
+	protected CartItem item3 = new CartItem(user3, new Product(), 4, 1120.00f);
 	
 	// DAO
 	@Autowired
@@ -45,10 +51,10 @@ public class DaoTestData {
 	protected CountriesDao countriesDao;
 	
 	@Autowired
-	protected AddressBookDao addressBookDao;
+	protected AddressesDao addressBookDao;
 	
 	@Autowired
-	protected BasketItemsDao basketItemsDao;
+	protected CartItemsDao basketItemsDao;
 	
 	// Database Setup
 	@Autowired
@@ -57,8 +63,8 @@ public class DaoTestData {
 	protected void clearDatabase() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		
-		jdbc.execute("delete from basket_item");
-		jdbc.execute("delete from address_book");
+		jdbc.execute("delete from cart_items");
+		jdbc.execute("delete from addresses");
 		jdbc.execute("delete from countries");
 		jdbc.execute("delete from users");
 	}
@@ -72,10 +78,16 @@ public class DaoTestData {
 		countriesDao.createOrUpdate(country2);
 		countriesDao.createOrUpdate(country3);
 		
-//		addressBookDao.createOrUpdate(address1);
-//		addressBookDao.createOrUpdate(address2);
-//		addressBookDao.createOrUpdate(address3);
-//		
+		addressBookDao.createOrUpdate(address1);
+		addressBookDao.createOrUpdate(address2);
+		addressBookDao.createOrUpdate(address3);
+		addressBookDao.createOrUpdate(address4);
+		addressBookDao.createOrUpdate(address5);
+		addressBookDao.createOrUpdate(address6);
+		addressBookDao.createOrUpdate(address7);
+		addressBookDao.createOrUpdate(address8);
+		addressBookDao.createOrUpdate(address9);
+		
 //		basketItemsDao.createOrUpdate(item1);
 //		basketItemsDao.createOrUpdate(item2);
 //		basketItemsDao.createOrUpdate(item3);

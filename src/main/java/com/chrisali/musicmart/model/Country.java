@@ -1,16 +1,22 @@
 package com.chrisali.musicmart.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.chrisali.musicmart.model.order.Order;
+import com.chrisali.musicmart.model.user.Address;
 
 /**
  * Country object that contains 2 and 3 digit ISO codes 
@@ -39,6 +45,12 @@ public class Country implements Serializable {
 	@Column(name="iso_code_3")
 	@Size(min=3, max=3)
 	private String isoCode3;
+	
+	@OneToMany(mappedBy = "country")
+	private List<Address> addresses;
+	
+	//@ManyToMany(mappedBy = "countries", cascade = CascadeType.ALL)
+	//private List<Order> orders;
 	
 	public Country() {}
 
@@ -78,6 +90,14 @@ public class Country implements Serializable {
 
 	public void setIsoCode3(String isoCode3) {
 		this.isoCode3 = isoCode3;
+	}
+	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	@Override

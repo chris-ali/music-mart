@@ -1,5 +1,9 @@
 package com.chrisali.musicmart.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +12,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.chrisali.musicmart.model.Country;
+import com.chrisali.musicmart.model.order.CreditCardType;
+import com.chrisali.musicmart.model.order.Order;
+import com.chrisali.musicmart.model.order.OrderStatus;
+import com.chrisali.musicmart.model.order.ShippingMethod;
 import com.chrisali.musicmart.model.product.Product;
 import com.chrisali.musicmart.model.user.Address;
 import com.chrisali.musicmart.model.user.CartItem;
@@ -43,6 +51,9 @@ public class DaoTestData {
 	protected CartItem cartItem2 = new CartItem(user2, new Product(), 3, 33.00f);
 	protected CartItem cartItem3 = new CartItem(user3, new Product(), 4, 1120.00f);
 	
+	// List of Orders
+	protected List<Order> ordersList = new ArrayList<>();
+	
 	// DAO
 	@Autowired
 	protected UsersDao usersDao;
@@ -56,6 +67,9 @@ public class DaoTestData {
 	@Autowired
 	protected CartItemsDao cartItemsDao;
 	
+	@Autowired
+	protected OrdersDao ordersDao;
+	
 	// Database Setup
 	@Autowired
 	private DataSource dataSource;
@@ -66,6 +80,7 @@ public class DaoTestData {
 		jdbc.execute("delete from cart_items");
 		jdbc.execute("delete from addresses");
 		jdbc.execute("delete from countries");
+		jdbc.execute("delete from orders");
 		jdbc.execute("delete from users");
 	}
 	
@@ -88,8 +103,52 @@ public class DaoTestData {
 		addressesDao.createOrUpdate(address8);
 		addressesDao.createOrUpdate(address9);
 		
-		cartItemsDao.createOrUpdate(cartItem1);
-		cartItemsDao.createOrUpdate(cartItem2);
-		cartItemsDao.createOrUpdate(cartItem3);
+//		cartItemsDao.createOrUpdate(cartItem1);
+//		cartItemsDao.createOrUpdate(cartItem2);
+//		cartItemsDao.createOrUpdate(cartItem3);
+		
+		setUpOrders();
+		
+		for(Order order : ordersList)
+			ordersDao.createOrUpdate(order);
+	}
+	
+	protected void setUpOrders() {
+		Order order;
+		for (int i = 0; i < 3; i++) {
+			order = new Order(user1, country1, country2);
+			order.setBillingName(address1.getName());
+			order.setBillingAddress1(address1.getAddressLine1());
+			order.setBillingAddress2(address1.getAddressLine2());
+			order.setBillingCity(address1.getCity());
+			order.setBillingPhoneNumber(address1.getPhoneNumber());
+			order.setBillingEmail(user1.getEmail());
+			order.setBillingPostalCode(address1.getPostalCode());
+			order.setBillingStateProvince(address1.getStateProvince());
+			
+			order.setShippingName(address1.getName());
+			order.setShippingAddress1(address1.getAddressLine1());
+			order.setShippingAddress2(address1.getAddressLine2());
+			order.setShippingCity(address1.getCity());
+			order.setShippingPhoneNumber(address1.getPhoneNumber());
+			order.setShippingPostalCode(address1.getPostalCode());
+			order.setShippingStateProvince(address1.getStateProvince());
+			
+			order.setPaymentMethod("Credit Card");
+			order.setCreditCardType(CreditCardType.VISA);
+			order.setCreditCardName(address1.getName());
+			order.setCreditCardNumber("01234 5678 9012 3456");
+			order.setCreditCardExpiration("09/18");
+			
+			order.setShippingMethod(ShippingMethod.FEDEX_GROUND);
+			order.setShippingCost(10.99f);
+			order.setDatePurchased(new Date());
+			order.setOrderStatus(OrderStatus.IN_TRANSIT);
+			order.setLastModified(new Date());
+			order.setOrderCompleted(new Date());
+			order.setComments("test");
+			
+			ordersList.add(order);
+		}
 	}
 }

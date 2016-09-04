@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -49,10 +48,13 @@ public class Country implements Serializable {
 	
 	@OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
 	private List<Address> addresses;
+
+	@OneToMany(mappedBy = "billingCountry", cascade = CascadeType.ALL)
+	private List<Order> billingCountryOrders;
 	
-	@ManyToMany(mappedBy = "countries", cascade = CascadeType.ALL)
-	private List<Order> orders;
-	
+	@OneToMany(mappedBy = "shippingCountry", cascade = CascadeType.ALL)
+	private List<Order> shippingCountryOrders;
+		
 	public Country() {}
 
 	public Country(String name, String isoCode2, String isoCode3) {
@@ -101,12 +103,20 @@ public class Country implements Serializable {
 		this.addresses = addresses;
 	}
 	
-	public List<Order> getOrders() {
-		return orders;
+	public List<Order> getBillingCountryOrders() {
+		return billingCountryOrders;
 	}
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
+	public void setBillingCountryOrders(List<Order> billingCountryOrders) {
+		this.billingCountryOrders = billingCountryOrders;
+	}
+
+	public List<Order> getShippingCountryOrders() {
+		return shippingCountryOrders;
+	}
+
+	public void setShippingCountryOrders(List<Order> shippingCountryOrders) {
+		this.shippingCountryOrders = shippingCountryOrders;
 	}
 
 	@Override

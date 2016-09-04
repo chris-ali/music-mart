@@ -63,6 +63,7 @@ public class Address implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="users_id", referencedColumnName = "id")
 	private User user;
+	
 	public Address() {
 		this.user = new User();
 		this.country = new Country();

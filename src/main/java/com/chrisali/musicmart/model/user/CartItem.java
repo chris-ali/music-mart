@@ -98,7 +98,7 @@ public class CartItem implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BasketItem [id=" + id + ", user=" + user + ", product=" + product + ", quantity=" + quantity
+		return "CartItem [id=" + id + ", user=" + user + ", product=" + product + ", quantity=" + quantity
 				+ ", totalPrice=" + totalPrice + ", dateAdded=" + dateAdded + "]";
 	}
 

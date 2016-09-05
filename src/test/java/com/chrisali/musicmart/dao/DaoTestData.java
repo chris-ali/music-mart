@@ -103,9 +103,9 @@ public class DaoTestData {
 		addressesDao.createOrUpdate(address8);
 		addressesDao.createOrUpdate(address9);
 		
-//		cartItemsDao.createOrUpdate(cartItem1);
-//		cartItemsDao.createOrUpdate(cartItem2);
-//		cartItemsDao.createOrUpdate(cartItem3);
+		cartItemsDao.createOrUpdate(cartItem1);
+		cartItemsDao.createOrUpdate(cartItem2);
+		cartItemsDao.createOrUpdate(cartItem3);
 		
 		setUpOrders();
 		

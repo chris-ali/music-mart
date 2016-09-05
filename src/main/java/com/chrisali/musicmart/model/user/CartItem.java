@@ -16,6 +16,8 @@ import org.hibernate.validator.constraints.Range;
 
 import com.chrisali.musicmart.model.product.Product;
 
+//TODO Test
+//FIXME products id cant be null
 @Entity
 @Table(name="cart_items")
 public class CartItem implements Serializable {
@@ -94,6 +96,14 @@ public class CartItem implements Serializable {
 
 	public void setTotalPrice(float totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	public Date getDateAdded() {
+		return dateAdded;
+	}
+
+	public void setDateAdded(Date dateAdded) {
+		this.dateAdded = dateAdded;
 	}
 
 	@Override

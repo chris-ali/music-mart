@@ -16,7 +16,9 @@ import com.chrisali.musicmart.model.order.CreditCardType;
 import com.chrisali.musicmart.model.order.Order;
 import com.chrisali.musicmart.model.order.OrderStatus;
 import com.chrisali.musicmart.model.order.ShippingMethod;
+import com.chrisali.musicmart.model.product.Manufacturer;
 import com.chrisali.musicmart.model.product.Product;
+import com.chrisali.musicmart.model.product.ProductDescription;
 import com.chrisali.musicmart.model.user.Address;
 import com.chrisali.musicmart.model.user.CartItem;
 import com.chrisali.musicmart.model.user.User;
@@ -46,10 +48,23 @@ public class DaoTestData {
 	protected Address address8 = new Address("Sophia Frueh", "Inge Beisheim Platz 95", "", "Amelinghausen", "Niedersachsen", "21385", "04132 76 12 71", country2, user3);
 	protected Address address9 = new Address("Tadashi Saya", "101-1013", "Harumi Ofuisutawa (30-kai)", "Chuou", "Tokyo", "104-6230", "8162-431-2300", country3, user3);
 	
+	// Manufacturers
+	protected Manufacturer manufacturer1 = new Manufacturer("test1", "www.test1.com/logo.jpg", "www.test1.com");
+	protected Manufacturer manufacturer2 = new Manufacturer("test2", "www.test2.com/logo.jpg", "www.test2.com");
+	protected Manufacturer manufacturer3 = new Manufacturer("test3", "www.test3.com/logo.jpg", "www.test3.com");
+	
+	// Product Descriptions
+	//protected ProductDescription description1 = new ProductDescription(product, name, description, url)
+	
+	// Products
+	protected Product product1 = new Product(manufacturer1, new ProductDescription()); 
+	protected Product product2 = new Product(manufacturer2, new ProductDescription());
+	protected Product product3 = new Product(manufacturer3, new ProductDescription());
+	
 	// Items
-	protected CartItem cartItem1 = new CartItem(user1, new Product(), 1, 29.95f);
-	protected CartItem cartItem2 = new CartItem(user2, new Product(), 3, 33.00f);
-	protected CartItem cartItem3 = new CartItem(user3, new Product(), 4, 1120.00f);
+	protected CartItem cartItem1 = new CartItem(user1, product1, 1, 29.95f);
+	protected CartItem cartItem2 = new CartItem(user2, product2, 3, 33.00f);
+	protected CartItem cartItem3 = new CartItem(user3, product3, 4, 1120.00f);
 	
 	// List of Orders
 	protected List<Order> ordersList = new ArrayList<>();

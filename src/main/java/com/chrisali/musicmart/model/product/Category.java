@@ -32,11 +32,11 @@ public class Category implements Serializable {
 	@Size(min = 2, max = 45)
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_id", referencedColumnName = "id")
 	private Category superCategory;
 	
-	@OneToMany(mappedBy = "superCategory", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "superCategory")
 	private List<Category> subCategories;
 	
 	@ManyToMany(mappedBy = "categories")

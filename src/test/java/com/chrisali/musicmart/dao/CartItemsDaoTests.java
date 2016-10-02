@@ -84,8 +84,8 @@ public class CartItemsDaoTests extends DaoTestData implements DaoTests {
 		
 		cartItemsDao.createOrUpdate(cartItem2);
 		
-		CartItem updatedcountry = cartItemsDao.getCartItem(cartItem2.getId());
+		CartItem updatedCartItem = cartItemsDao.getCartItem(cartItem2.getId());
 		
-		assertEquals("Updated cart item should equal cart item retrieved from database", cartItem2, updatedcountry);
+		assertEquals("Updated cart item should equal cart item retrieved from database", cartItem2, updatedCartItem);
 	}
 }

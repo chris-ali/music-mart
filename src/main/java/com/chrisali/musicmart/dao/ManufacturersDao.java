@@ -53,7 +53,7 @@ public class ManufacturersDao extends AbstractDao {
 	/**
 	 * @return total number of {@link Manufacturer} in database using HQL
 	 */
-	public Long getTotalNumberOfManufacturersForUser() {
+	public Long getTotalNumberOfManufacturers() {
 		Query criteria = getSession().createQuery("Select count (id) from Manufacturer");
 
 		Long count = (Long)criteria.uniqueResult();

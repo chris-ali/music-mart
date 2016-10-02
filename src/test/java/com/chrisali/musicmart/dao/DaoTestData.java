@@ -1,6 +1,7 @@
 package com.chrisali.musicmart.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import com.chrisali.musicmart.model.order.CreditCardType;
 import com.chrisali.musicmart.model.order.Order;
 import com.chrisali.musicmart.model.order.OrderStatus;
 import com.chrisali.musicmart.model.order.ShippingMethod;
+import com.chrisali.musicmart.model.product.Category;
 import com.chrisali.musicmart.model.product.Manufacturer;
 import com.chrisali.musicmart.model.product.Product;
 import com.chrisali.musicmart.model.product.ProductDescription;
@@ -61,6 +63,10 @@ public class DaoTestData {
 	protected Product product2 = new Product(manufacturer2, new ProductDescription());
 	protected Product product3 = new Product(manufacturer3, new ProductDescription());
 	
+	// Categories
+	protected Category category1 = new Category("www.test.com/image.jpg", "Guitars", new ArrayList<>(Arrays.asList(new Product[] {product1, product2})));
+	protected Category category2 = new Category("www.test.com/image.jpg", "Basses", new ArrayList<>(Arrays.asList(new Product[] {product3})));
+	
 	// Items
 	protected CartItem cartItem1 = new CartItem(user1, product1, 1, 29.95f);
 	protected CartItem cartItem2 = new CartItem(user2, product2, 3, 33.00f);
@@ -85,6 +91,9 @@ public class DaoTestData {
 	@Autowired
 	protected OrdersDao ordersDao;
 	
+	@Autowired
+	protected ManufacturersDao manufacturersDao;
+	
 	// Database Setup
 	@Autowired
 	private DataSource dataSource;
@@ -92,6 +101,7 @@ public class DaoTestData {
 	protected void clearDatabase() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		
+		jdbc.execute("delete from manufacturers");
 		jdbc.execute("delete from cart_items");
 		jdbc.execute("delete from addresses");
 		jdbc.execute("delete from countries");
@@ -117,6 +127,10 @@ public class DaoTestData {
 		addressesDao.createOrUpdate(address7);
 		addressesDao.createOrUpdate(address8);
 		addressesDao.createOrUpdate(address9);
+		
+		manufacturersDao.createOrUpdate(manufacturer1);
+		manufacturersDao.createOrUpdate(manufacturer2);
+		manufacturersDao.createOrUpdate(manufacturer3);
 		
 		cartItemsDao.createOrUpdate(cartItem1);
 		cartItemsDao.createOrUpdate(cartItem2);

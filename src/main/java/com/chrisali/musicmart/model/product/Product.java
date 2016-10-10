@@ -40,8 +40,7 @@ public class Product implements Serializable {
 	@Size(min = 2, max = 45)
 	private String model;
 	
-	@NotBlank
-	@Size(min = 2, max = 100)
+	@Size(max = 100)
 	private String image;
 	
 	@Column(name="date_added")
@@ -69,11 +68,13 @@ public class Product implements Serializable {
 		this.productDescription = new ProductDescription();
 	}
 	
-	public Product(Manufacturer manufacturer, ProductDescription productDescription) {
+	public Product(Manufacturer manufacturer, String model, String image, int quantitiyAvailable) {
 		this.dateAdded = new Date();
 		this.dateAvailable = new Date();
 		this.manufacturer = manufacturer;
-		this.productDescription = productDescription;
+		this.model = model;
+		this.image = image;
+		this.quantityAvailable = quantitiyAvailable;
 	}
 	
 	public int getId() {

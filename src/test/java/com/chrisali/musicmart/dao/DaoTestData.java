@@ -55,13 +55,15 @@ public class DaoTestData {
 	protected Manufacturer manufacturer2 = new Manufacturer("test2", "www.test2.com/logo.jpg", "www.test2.com");
 	protected Manufacturer manufacturer3 = new Manufacturer("test3", "www.test3.com/logo.jpg", "www.test3.com");
 	
-	// Product Descriptions
-	//protected ProductDescription description1 = new ProductDescription(product, name, description, url)
-	
 	// Products
-	protected Product product1 = new Product(manufacturer1, new ProductDescription()); 
-	protected Product product2 = new Product(manufacturer2, new ProductDescription());
-	protected Product product3 = new Product(manufacturer3, new ProductDescription());
+	protected Product product1 = new Product(manufacturer1, "Model 1", "www.test1.com/logo1.jpg", 10); 
+	protected Product product2 = new Product(manufacturer2, "Model 2", "www.test2.com/logo2.jpg", 50);
+	protected Product product3 = new Product(manufacturer3, "Model 3", "www.test3.com/logo3.jpg", 0);
+	
+	// Product Descriptions
+	protected ProductDescription description1 = new ProductDescription(product1, "Product 1", "Description for Product 1", "www.testDescription1.com");
+	protected ProductDescription description2 = new ProductDescription(product2, "Product 2", "Description for Product 2", "www.testDescription2.com");
+	protected ProductDescription description3 = new ProductDescription(product3, "Product 3", "Description for Product 3", "www.testDescription3.com");
 	
 	// Categories
 	protected Category category1 = new Category("www.test.com/image.jpg", "Guitars", new ArrayList<>(Arrays.asList(new Product[] {product1, product2})));
@@ -94,6 +96,15 @@ public class DaoTestData {
 	@Autowired
 	protected ManufacturersDao manufacturersDao;
 	
+	@Autowired 
+	protected ProductsDao productsDao;
+	
+	@Autowired
+	protected ProductDescriptionsDao productDescriptionsDao;
+	
+	@Autowired
+	protected CategoriesDao categoriesDao;
+	
 	// Database Setup
 	@Autowired
 	private DataSource dataSource;
@@ -101,8 +112,11 @@ public class DaoTestData {
 	protected void clearDatabase() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		
+		jdbc.execute("delete from product_description");
+		jdbc.execute("delete from products");
 		jdbc.execute("delete from manufacturers");
 		jdbc.execute("delete from cart_items");
+		jdbc.execute("delete from categories");
 		jdbc.execute("delete from addresses");
 		jdbc.execute("delete from countries");
 		jdbc.execute("delete from orders");
@@ -131,6 +145,17 @@ public class DaoTestData {
 		manufacturersDao.createOrUpdate(manufacturer1);
 		manufacturersDao.createOrUpdate(manufacturer2);
 		manufacturersDao.createOrUpdate(manufacturer3);
+		
+		productsDao.createOrUpdate(product1);
+		productsDao.createOrUpdate(product2);
+		productsDao.createOrUpdate(product3);
+		
+		productDescriptionsDao.createOrUpdate(description1);
+		productDescriptionsDao.createOrUpdate(description2);
+		productDescriptionsDao.createOrUpdate(description3);
+		
+		categoriesDao.createOrUpdateIntoDb(category1);
+		categoriesDao.createOrUpdateIntoDb(category2);
 		
 		cartItemsDao.createOrUpdate(cartItem1);
 		cartItemsDao.createOrUpdate(cartItem2);

@@ -43,6 +43,13 @@ public class Category implements Serializable {
 	private List<Product> products;
 	
 	public Category() {}
+	
+	public Category(List<Category> subCategories, Category superCategory, String image, String name) {
+		this.image = image;
+		this.name = name;
+		this.subCategories = subCategories;
+		this.superCategory = superCategory;
+	}
 
 	public Category(String image, String name, List<Product> products) {
 		this.image = image;

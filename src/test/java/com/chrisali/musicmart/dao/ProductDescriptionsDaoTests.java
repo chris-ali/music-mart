@@ -80,7 +80,7 @@ public class ProductDescriptionsDaoTests extends DaoTestData implements DaoTests
 		productDescriptions.clear();
 		productDescriptionsDao.delete(description2.getId());
 		
-		ProductDescription deletedDescription = productDescriptionsDao.getProductDescription(description1.getId());
+		ProductDescription deletedDescription = productDescriptionsDao.getProductDescription(description2.getId());
 		
 		assertNull("Description should be null (not exist in database)", deletedDescription);
 	}
@@ -94,8 +94,8 @@ public class ProductDescriptionsDaoTests extends DaoTestData implements DaoTests
 		
 		productDescriptionsDao.createOrUpdate(description2);
 		
-		ProductDescription updateddescription = productDescriptionsDao.getProductDescription(description2.getId());
+		ProductDescription updatedDescription = productDescriptionsDao.getProductDescription(description2.getId());
 		
-		assertEquals("Updated description should equal description retrieved from database", description2, updateddescription);
+		assertEquals("Updated description should equal description retrieved from database", description2, updatedDescription);
 	}
 }

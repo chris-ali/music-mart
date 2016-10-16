@@ -68,6 +68,7 @@ public class DaoTestData {
 	// Categories
 	protected Category category1 = new Category("www.test.com/image.jpg", "Guitars", new ArrayList<>(Arrays.asList(new Product[] {product1, product2})));
 	protected Category category2 = new Category("www.test.com/image.jpg", "Basses", new ArrayList<>(Arrays.asList(new Product[] {product3})));
+	protected Category category3 = new Category(new ArrayList<>(Arrays.asList(new Category[] {category1, category2})), null, "www.test.com/image.jpg", "Stringed Instruments");
 	
 	// Items
 	protected CartItem cartItem1 = new CartItem(user1, product1, 1, 29.95f);
@@ -154,8 +155,12 @@ public class DaoTestData {
 		productDescriptionsDao.createOrUpdate(description2);
 		productDescriptionsDao.createOrUpdate(description3);
 		
+		category1.setSuperCategory(category3);
+		category2.setSuperCategory(category3);
+		
 		categoriesDao.createOrUpdateIntoDb(category1);
 		categoriesDao.createOrUpdateIntoDb(category2);
+		categoriesDao.createOrUpdateIntoDb(category3);
 		
 		cartItemsDao.createOrUpdate(cartItem1);
 		cartItemsDao.createOrUpdate(cartItem2);
@@ -167,7 +172,7 @@ public class DaoTestData {
 			ordersDao.createOrUpdate(order);
 	}
 	
-	protected void setUpOrders() {
+	private void setUpOrders() {
 		Order order;
 		for (int i = 0; i < 3; i++) {
 			order = new Order(user1, country1, country2);

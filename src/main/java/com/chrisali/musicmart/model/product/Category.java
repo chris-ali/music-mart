@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-//TODO Test
 @Entity
 @Table(name = "categories")
 public class Category implements Serializable {
@@ -116,7 +115,7 @@ public class Category implements Serializable {
 		int result = 1;
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((products == null) ? 0 : products.hashCode());
+		result = prime * result + ((superCategory == null) ? 0 : superCategory.hashCode());
 		return result;
 	}
 
@@ -139,10 +138,10 @@ public class Category implements Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (products == null) {
-			if (other.products != null)
+		if (superCategory == null) {
+			if (other.superCategory != null)
 				return false;
-		} else if (!products.equals(other.products))
+		} else if (!superCategory.equals(other.superCategory))
 			return false;
 		return true;
 	}

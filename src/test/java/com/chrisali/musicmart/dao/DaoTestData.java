@@ -21,6 +21,7 @@ import com.chrisali.musicmart.model.product.Category;
 import com.chrisali.musicmart.model.product.Manufacturer;
 import com.chrisali.musicmart.model.product.Product;
 import com.chrisali.musicmart.model.product.ProductDescription;
+import com.chrisali.musicmart.model.product.Review;
 import com.chrisali.musicmart.model.user.Address;
 import com.chrisali.musicmart.model.user.CartItem;
 import com.chrisali.musicmart.model.user.User;
@@ -78,6 +79,13 @@ public class DaoTestData {
 	// List of Orders
 	protected List<Order> ordersList = new ArrayList<>();
 	
+	// Reviews
+	protected Review review1 = new Review(3, product1, user1, "Review for product");
+	protected Review review2 = new Review(2, product2, user2, "Another review for product");
+	protected Review review3 = new Review(1, product3, user3, "Yet another review for product");
+	protected Review review4 = new Review(4, product2, user1, "Review for this product");
+	protected Review review5 = new Review(5, product1, user2, "Test review for test product");
+	
 	// DAO
 	@Autowired
 	protected UsersDao usersDao;
@@ -106,6 +114,9 @@ public class DaoTestData {
 	@Autowired
 	protected CategoriesDao categoriesDao;
 	
+	@Autowired
+	protected ReviewsDao reviewsDao;
+	
 	// Database Setup
 	@Autowired
 	private DataSource dataSource;
@@ -113,6 +124,7 @@ public class DaoTestData {
 	protected void clearDatabase() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 		
+		jdbc.execute("delete from reviews");
 		jdbc.execute("delete from product_description");
 		jdbc.execute("delete from products");
 		jdbc.execute("delete from manufacturers");
@@ -165,6 +177,12 @@ public class DaoTestData {
 		cartItemsDao.createOrUpdate(cartItem1);
 		cartItemsDao.createOrUpdate(cartItem2);
 		cartItemsDao.createOrUpdate(cartItem3);
+		
+		reviewsDao.createOrUpdateIntoDb(review1);
+		reviewsDao.createOrUpdateIntoDb(review2);
+		reviewsDao.createOrUpdateIntoDb(review3);
+		reviewsDao.createOrUpdateIntoDb(review4);
+		reviewsDao.createOrUpdateIntoDb(review5);
 		
 		setUpOrders();
 		

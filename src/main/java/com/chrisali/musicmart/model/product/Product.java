@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -21,7 +22,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
-//TODO Test
 @Entity
 @Table(name="products")
 public class Product implements Serializable {
@@ -61,6 +61,9 @@ public class Product implements Serializable {
 	@ManyToMany
 	private List<Category> categories;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Review> reviews;
+	
 	public Product() {
 		this.dateAdded = new Date();
 		this.dateAvailable = new Date();
@@ -156,6 +159,14 @@ public class Product implements Serializable {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	@Override
 	public String toString() {
@@ -168,12 +179,9 @@ public class Product implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dateAdded == null) ? 0 : dateAdded.hashCode());
-		result = prime * result + ((dateAvailable == null) ? 0 : dateAvailable.hashCode());
 		result = prime * result + ((image == null) ? 0 : image.hashCode());
 		result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		result = prime * result + ((productDescription == null) ? 0 : productDescription.hashCode());
 		result = prime * result + quantityAvailable;
 		result = prime * result + Float.floatToIntBits(weight);
 		return result;
@@ -188,16 +196,6 @@ public class Product implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if (dateAdded == null) {
-			if (other.dateAdded != null)
-				return false;
-		} else if (!dateAdded.equals(other.dateAdded))
-			return false;
-		if (dateAvailable == null) {
-			if (other.dateAvailable != null)
-				return false;
-		} else if (!dateAvailable.equals(other.dateAvailable))
-			return false;
 		if (image == null) {
 			if (other.image != null)
 				return false;
@@ -212,11 +210,6 @@ public class Product implements Serializable {
 			if (other.model != null)
 				return false;
 		} else if (!model.equals(other.model))
-			return false;
-		if (productDescription == null) {
-			if (other.productDescription != null)
-				return false;
-		} else if (!productDescription.equals(other.productDescription))
 			return false;
 		if (quantityAvailable != other.quantityAvailable)
 			return false;

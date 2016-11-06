@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.chrisali.musicmart.model.order.Order;
+import com.chrisali.musicmart.model.product.Review;
 
 @Entity
 @Table(name="users")
@@ -69,6 +70,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Order> orders;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Review> reviews;
 	
 	public User() {}
 
@@ -176,6 +180,14 @@ public class User implements Serializable {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override

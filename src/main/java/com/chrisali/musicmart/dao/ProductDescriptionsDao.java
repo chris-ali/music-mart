@@ -15,7 +15,6 @@ import com.chrisali.musicmart.model.product.ProductDescription;
  * @author Christopher Ali
  *
  */
-//TODO Test
 @Transactional
 @Component("productDescriptionsDao")
 @Repository

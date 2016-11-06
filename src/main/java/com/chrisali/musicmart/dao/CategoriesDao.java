@@ -19,7 +19,6 @@ import com.chrisali.musicmart.model.product.Category;
  * @author Christopher Ali
  *
  */
-//TODO Test
 @Transactional
 @Component("categoriesDao")
 @Repository
@@ -38,7 +37,7 @@ public class CategoriesDao extends AbstractDao {
 	 * @return List of all {@link Category} in database using Hibernate Criteria 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Category> getCategories() {
+	public List<Category> getAllCategories() {
 		Criteria criteria = getSession().createCriteria(Category.class);
 
 		List<Category> items = criteria.list();
@@ -49,14 +48,14 @@ public class CategoriesDao extends AbstractDao {
 	}
 	
 	/**
-	 * @param id 
+	 * @param parentId 
 	 * @return List of all sub-{@link Category} for a given super-category ID using Hibernate Criteria
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Category> getSubCategories(int id) {
+	public List<Category> getSubCategories(int parentId) {
 		Criteria criteria = getSession().createCriteria(Category.class)
-				.createAlias("sc", "superCategory")
-				.add(Restrictions.eq("sc.id", id))
+				.createAlias("superCategory", "sc")
+				.add(Restrictions.eq("sc.id", parentId))
 				.addOrder(Order.asc("name"));
 
 		List<Category> items = criteria.list();

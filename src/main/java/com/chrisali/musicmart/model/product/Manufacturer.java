@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-//TODO Test
 @Entity
 @Table(name="manufacturers")
 public class Manufacturer implements Serializable {

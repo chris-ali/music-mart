@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-//TODO Test
 @Entity
 @Table(name = "product_description")
 public class ProductDescription implements Serializable {

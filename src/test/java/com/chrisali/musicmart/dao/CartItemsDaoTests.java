@@ -29,6 +29,8 @@ public class CartItemsDaoTests extends DaoTestData implements DaoTests {
 	@Test
 	@Override
 	public void testCreateRetrieve() {
+		addTestData();
+		
 		cartItemsDao.createOrUpdate(cartItem1);
 		
 		List<CartItem> cartItems = cartItemsDao.getPaginatedCartItemsForUser(user1.getId(), 0, 10);

@@ -119,7 +119,7 @@ public class DaoTestData {
 	
 	// Database Setup
 	@Autowired
-	private DataSource dataSource;
+	protected DataSource dataSource;
 	
 	protected void clearDatabase() {
 		JdbcTemplate jdbc = new JdbcTemplate(dataSource);

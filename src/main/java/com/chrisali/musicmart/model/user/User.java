@@ -45,7 +45,6 @@ public class User implements Serializable {
 	@Email
 	private String email;
 	
-	//@JoinColumn(name="id")
 	@Column(name="default_address_id")
 	private int defaultAddress;
 	
@@ -73,6 +72,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<CartItem> cartItems;
 	
 	public User() {}
 

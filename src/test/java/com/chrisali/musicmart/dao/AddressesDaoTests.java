@@ -40,7 +40,7 @@ public class AddressesDaoTests extends DaoTestData implements DaoTests {
 		addressesDao.createOrUpdate(address2);
 		addressesDao.createOrUpdate(address3);
 		
-		List<Address> addresses = addressesDao.getPaginatedAddresses(user1.getId(), 0, 10);
+		List<Address> addresses = addressesDao.getPaginatedAddressesForUser(user1.getId(), 0, 10);
 		
 		assertEquals("Three addresses should be in list belonging to user 1", 3, addresses.size());
 		
@@ -51,11 +51,11 @@ public class AddressesDaoTests extends DaoTestData implements DaoTests {
 		addressesDao.createOrUpdate(address8);
 		addressesDao.createOrUpdate(address9);
 		
-		addresses = addressesDao.getPaginatedAddresses(user2.getId(), 0, 10);
+		addresses = addressesDao.getPaginatedAddressesForUser(user2.getId(), 0, 10);
 		
 		assertEquals("Three addresses should be in list belonging to user 2", 3, addresses.size());
 		
-		addresses = addressesDao.getPaginatedAddresses(user3.getId(), 0, 10);
+		addresses = addressesDao.getPaginatedAddressesForUser(user3.getId(), 0, 10);
 		
 		assertEquals("Three addresses should be in list belonging to user 3", 3, addresses.size());
 	}
@@ -78,11 +78,11 @@ public class AddressesDaoTests extends DaoTestData implements DaoTests {
 	public void testDelete() {
 		addTestData();
 		
-		List<Address> addresses = addressesDao.getPaginatedAddresses(user2.getId(), 0, 10);
+		List<Address> addresses = addressesDao.getPaginatedAddressesForUser(user2.getId(), 0, 10);
 		
 		addressesDao.delete(address4.getId());
 		
-		addresses = addressesDao.getPaginatedAddresses(user2.getId(), 0, 10);
+		addresses = addressesDao.getPaginatedAddressesForUser(user2.getId(), 0, 10);
 		
 		assertEquals("Two addresses should be left in list belonging to user 2", 2, addresses.size());
 	}

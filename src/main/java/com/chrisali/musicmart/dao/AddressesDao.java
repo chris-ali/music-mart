@@ -39,7 +39,7 @@ public class AddressesDao extends AbstractDao {
 	 * @return paginated List of all {@link Address} in database belonging to {@link User} using Hibernate Criteria 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Address> getPaginatedAddresses(int users_id, int pageNumber, int resultsSize) {
+	public List<Address> getPaginatedAddressesForUser(int users_id, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(Address.class)
 										.createAlias("user", "u")
 										.add(Restrictions.eq("u.id", users_id))

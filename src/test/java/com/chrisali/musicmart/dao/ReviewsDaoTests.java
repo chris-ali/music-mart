@@ -53,18 +53,18 @@ public class ReviewsDaoTests extends DaoTestData implements DaoTests {
 		
 		reviewsDao.createOrUpdate(review1);
 		
-		List<Review> reviews = reviewsDao.getPaginatedReviews(0, 10);
+		List<Review> reviews = reviewsDao.getPaginatedReviewsForUser(user1.getId(), 0, 10);
 		
-		assertEquals("One review should be in list", 1, reviews.size());
+		assertEquals("One review should be in list for user 1", 1, reviews.size());
 		
 		reviewsDao.createOrUpdate(review2);
 		reviewsDao.createOrUpdate(review3);
 		reviewsDao.createOrUpdate(review4);
 		reviewsDao.createOrUpdate(review5);
 		
-		reviews = reviewsDao.getPaginatedReviews(0, 10);
+		reviews = reviewsDao.getPaginatedReviewsForUser(user2.getId(), 0, 10);
 		
-		assertEquals("Five reviews should be in list", 5, reviews.size());
+		assertEquals("Two reviews should be in list for user 2", 2, reviews.size());
 	}
 
 	@Test
@@ -85,13 +85,13 @@ public class ReviewsDaoTests extends DaoTestData implements DaoTests {
 	public void testDelete() {
 		addTestData();
 		
-		List<Review> reviews = reviewsDao.getPaginatedReviews(0, 10);
-		assertEquals("Five reviews should be in list", 5, reviews.size());
+		List<Review> reviews = reviewsDao.getPaginatedReviewsForUser(user1.getId(), 0, 10);
+		assertEquals("Two reviews should be in list for user 1", 2, reviews.size());
 		
-		reviewsDao.delete(review2.getId());
+		reviewsDao.delete(review4.getId());
 		
-		reviews = reviewsDao.getPaginatedReviews(0, 10);
-		assertEquals("Four reviews should be left in list", 4, reviews.size());
+		reviews = reviewsDao.getPaginatedReviewsForUser(user1.getId(), 0, 10);
+		assertEquals("One review should be left in list for user 1", 1, reviews.size());
 	}
 
 	@Test

@@ -11,7 +11,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.chrisali.musicmart.model.product.Product;
 import com.chrisali.musicmart.model.product.Review;
+import com.chrisali.musicmart.model.user.User;
 
 /**
  * DAO that communicates with MySQL using Hibernate to perform CRUD operations on {@link Review} objects
@@ -36,11 +38,13 @@ public class ReviewsDao extends AbstractDao {
 	/**
 	 * @param pageNumber
 	 * @param resultsSize
-	 * @return paginated List of all {@link Review} in database using Hibernate Criteria 
+	 * @return paginated List of all {@link Review} objects belonging to {@link User} using Hibernate Criteria
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Review> getPaginatedReviews(int pageNumber, int resultsSize) {
+	public List<Review> getPaginatedReviewsForUser(int usersId, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(Review.class)
+										.createAlias("user", "u")
+										.add(Restrictions.eq("u.id", usersId))
 										.setMaxResults(resultsSize)
 										.setFirstResult(pageNumber * resultsSize)
 										.addOrder(Order.asc("dateAdded"));
@@ -53,10 +57,45 @@ public class ReviewsDao extends AbstractDao {
 	}
 	
 	/**
-	 * @return total number of {@link Review} in database using HQL
+	 * @param pageNumber
+	 * @param resultsSize
+	 * @return paginated List of all {@link Review} objects belonging to {@link Product} using Hibernate Criteria 
 	 */
-	public Long getTotalNumberOfReviews() {
-		Query criteria = getSession().createQuery("Select count (id) from Review");
+	@SuppressWarnings("unchecked")
+	public List<Review> getPaginatedReviewsForProduct(int productsId, int pageNumber, int resultsSize) {
+		Criteria criteria = getSession().createCriteria(Review.class)
+										.createAlias("product", "p")
+										.add(Restrictions.eq("p.id", productsId))
+										.setMaxResults(resultsSize)
+										.setFirstResult(pageNumber * resultsSize)
+										.addOrder(Order.asc("dateAdded"));
+		
+		List<Review> reviews = criteria.list();
+		
+		closeSession();
+		
+		return reviews;
+	}
+	
+	/**
+	 * @param usersId
+	 * @return total number of {@link Review} in database for a given {@link User} using HQL 
+	 */
+	public Long getTotalNumberOfReviewsForUser(int usersId) {
+		Query criteria = getSession().createQuery("Select count (id) from Review r where u.user.id =" + usersId);
+		Long count = (Long)criteria.uniqueResult();
+		
+		closeSession();
+		
+		return count;
+	}
+	
+	/**
+	 * @param productsId
+	 * @return total number of {@link Review} in database for a given {@link Product} using HQL
+	 */
+	public Long getTotalNumberOfReviewsForProduct(int productsId) {
+		Query criteria = getSession().createQuery("Select count (id) from Review r where u.product.id =" + productsId);
 		Long count = (Long)criteria.uniqueResult();
 		
 		closeSession();

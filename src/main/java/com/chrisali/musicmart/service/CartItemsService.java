@@ -24,10 +24,10 @@ public class CartItemsService {
 	/**
 	 * Adds/updates {@link CartItem} object in/to database, depending on if object already exists in database
 	 * 
-	 * @param user
+	 * @param item
 	 */
-	public void createOrUpdate(CartItem user) {
-		cartItemsDao.createOrUpdate(user);
+	public void createOrUpdate(CartItem item) {
+		cartItemsDao.createOrUpdate(item);
 	}
 	
 	/**

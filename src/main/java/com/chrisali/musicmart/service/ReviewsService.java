@@ -25,10 +25,10 @@ public class ReviewsService {
 	/**
 	 * Adds/updates {@link Review} object in/to database, depending on if object already exists in database
 	 * 
-	 * @param address
+	 * @param review
 	 */
-	public void createOrUpdate(Review address) {
-		reviewsDao.createOrUpdate(address);
+	public void createOrUpdate(Review review) {
+		reviewsDao.createOrUpdate(review);
 	}
 	
 	/**

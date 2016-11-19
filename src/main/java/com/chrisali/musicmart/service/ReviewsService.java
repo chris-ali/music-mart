@@ -40,6 +40,14 @@ public class ReviewsService {
 	}
 	
 	/**
+	 * @param id
+	 * @return {@link Review} object from database for given id
+	 */
+	public Review getReview(int id) {
+		return reviewsDao.getReview(id);
+	}
+	
+	/**
 	 * @param usersId
 	 * @param pageNumber
 	 * @param resultsSize

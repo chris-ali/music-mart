@@ -38,6 +38,14 @@ public class UsersService {
 	}
 	
 	/**
+	 * @param id
+	 * @return {@link User} object from database for given id
+	 */
+	public User getUser(int id) {
+		return usersDao.getUser(id);
+	}
+	
+	/**
 	 * @param pageNumber
 	 * @param resultsSize
 	 * @return list of paginated {@link User} objects resultsSize objects long 

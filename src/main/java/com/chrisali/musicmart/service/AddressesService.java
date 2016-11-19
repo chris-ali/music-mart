@@ -39,13 +39,21 @@ public class AddressesService {
 	}
 	
 	/**
+	 * @param id
+	 * @return {@link Address} object for given id
+	 */
+	public Address getAddress(int id) {
+		return addressesDao.getAddress(id);
+	}
+	
+	/**
 	 * @param usersId
 	 * @param pageNumber
 	 * @param resultsSize
 	 * @return list of paginated {@link Address} objects resultsSize-objects long for a given {@link User} 
 	 */
 	@Secured("ROLE_USER")
-	public List<Address> getPaginatedAddresss(int usersId, int pageNumber, int resultsSize) {
+	public List<Address> getPaginatedAddressesForUser(int usersId, int pageNumber, int resultsSize) {
 		return addressesDao.getPaginatedAddressesForUser(usersId, pageNumber, resultsSize);
 	}
 	

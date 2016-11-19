@@ -39,6 +39,14 @@ public class CartItemsService {
 	}
 	
 	/**
+	 * @param id
+	 * @return {@link CartItem} object for given id
+	 */
+	public CartItem getCartItem(int id) {
+		return cartItemsDao.getCartItem(id);
+	}
+	
+	/**
 	 * @param usersId
 	 * @param pageNumber
 	 * @param resultsSize

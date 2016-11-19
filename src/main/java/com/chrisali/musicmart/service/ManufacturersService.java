@@ -47,6 +47,13 @@ public class ManufacturersService {
 	}
 	
 	/**
+	 * @return count of {@link Manufacturer} objects in database
+	 */
+	public Long getTotalNumberOfManufacturers() {
+		return manufacturersDao.getTotalNumberOfManufacturers();
+	}
+	
+	/**
 	 * @param id
 	 * @return {@link Manufacturer} object from database
 	 */

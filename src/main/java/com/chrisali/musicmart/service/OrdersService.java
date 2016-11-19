@@ -41,6 +41,14 @@ public class OrdersService {
 	}
 	
 	/**
+	 * @param id
+	 * @return {@link Order} object for given id
+	 */
+	public Order getOrder(int id) {
+		return ordersDao.getOrder(id);
+	}
+	
+	/**
 	 * @param usersId
 	 * @param pageNumber
 	 * @param resultsSize

@@ -1,4 +1,4 @@
-package com.chrisali.musicmart.dao;
+package com.chrisali.musicmart.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ import com.chrisali.musicmart.model.user.User;
 
 @Component
 @ActiveProfiles("test")
-public class DaoTestData {
+public class ServiceTestData {
 	
 	// Users
 	protected User user1 = new User("Chris", "Ali", "chrisali@test.com", "test1", true, "ROLE_ADMIN");
@@ -88,34 +88,34 @@ public class DaoTestData {
 	
 	// DAO
 	@Autowired
-	protected UsersDao usersDao;
+	protected UsersService usersService;
 	
 	@Autowired
-	protected CountriesDao countriesDao;
+	protected CountriesService countriesService;
 	
 	@Autowired
-	protected AddressesDao addressesDao;
+	protected AddressesService addressesService;
 	
 	@Autowired
-	protected CartItemsDao cartItemsDao;
+	protected CartItemsService cartItemsService;
 	
 	@Autowired
-	protected OrdersDao ordersDao;
+	protected OrdersService ordersService;
 	
 	@Autowired
-	protected ManufacturersDao manufacturersDao;
+	protected ManufacturersService manufacturersService;
 	
 	@Autowired 
-	protected ProductsDao productsDao;
+	protected ProductsService productsService;
 	
 	@Autowired
-	protected ProductDescriptionsDao productDescriptionsDao;
+	protected ProductDescriptionsService productDescriptionsService;
 	
 	@Autowired
-	protected CategoriesDao categoriesDao;
+	protected CategoriesService categoriesService;
 	
 	@Autowired
-	protected ReviewsDao reviewsDao;
+	protected ReviewsService reviewsService;
 	
 	// Database Setup
 	@Autowired
@@ -137,57 +137,57 @@ public class DaoTestData {
 	}
 	
 	protected void addTestData() {
-		usersDao.createOrUpdate(user1);
-		usersDao.createOrUpdate(user2);
-		usersDao.createOrUpdate(user3);
+		usersService.createOrUpdate(user1);
+		usersService.createOrUpdate(user2);
+		usersService.createOrUpdate(user3);
 		
-		countriesDao.createOrUpdate(country1);
-		countriesDao.createOrUpdate(country2);
-		countriesDao.createOrUpdate(country3);
+		countriesService.createOrUpdate(country1);
+		countriesService.createOrUpdate(country2);
+		countriesService.createOrUpdate(country3);
 		
-		addressesDao.createOrUpdate(address1);
-		addressesDao.createOrUpdate(address2);
-		addressesDao.createOrUpdate(address3);
-		addressesDao.createOrUpdate(address4);
-		addressesDao.createOrUpdate(address5);
-		addressesDao.createOrUpdate(address6);
-		addressesDao.createOrUpdate(address7);
-		addressesDao.createOrUpdate(address8);
-		addressesDao.createOrUpdate(address9);
+		addressesService.createOrUpdate(address1);
+		addressesService.createOrUpdate(address2);
+		addressesService.createOrUpdate(address3);
+		addressesService.createOrUpdate(address4);
+		addressesService.createOrUpdate(address5);
+		addressesService.createOrUpdate(address6);
+		addressesService.createOrUpdate(address7);
+		addressesService.createOrUpdate(address8);
+		addressesService.createOrUpdate(address9);
 		
-		manufacturersDao.createOrUpdate(manufacturer1);
-		manufacturersDao.createOrUpdate(manufacturer2);
-		manufacturersDao.createOrUpdate(manufacturer3);
+		manufacturersService.createOrUpdate(manufacturer1);
+		manufacturersService.createOrUpdate(manufacturer2);
+		manufacturersService.createOrUpdate(manufacturer3);
 		
-		productsDao.createOrUpdate(product1);
-		productsDao.createOrUpdate(product2);
-		productsDao.createOrUpdate(product3);
+		productsService.createOrUpdate(product1);
+		productsService.createOrUpdate(product2);
+		productsService.createOrUpdate(product3);
 		
-		productDescriptionsDao.createOrUpdate(description1);
-		productDescriptionsDao.createOrUpdate(description2);
-		productDescriptionsDao.createOrUpdate(description3);
+		productDescriptionsService.createOrUpdate(description1);
+		productDescriptionsService.createOrUpdate(description2);
+		productDescriptionsService.createOrUpdate(description3);
 		
 		category1.setSuperCategory(category3);
 		category2.setSuperCategory(category3);
 		
-		categoriesDao.createOrUpdate(category1);
-		categoriesDao.createOrUpdate(category2);
-		categoriesDao.createOrUpdate(category3);
+		categoriesService.createOrUpdate(category1);
+		categoriesService.createOrUpdate(category2);
+		categoriesService.createOrUpdate(category3);
 		
-		cartItemsDao.createOrUpdate(cartItem1);
-		cartItemsDao.createOrUpdate(cartItem2);
-		cartItemsDao.createOrUpdate(cartItem3);
+		cartItemsService.createOrUpdate(cartItem1);
+		cartItemsService.createOrUpdate(cartItem2);
+		cartItemsService.createOrUpdate(cartItem3);
 		
-		reviewsDao.createOrUpdate(review1);
-		reviewsDao.createOrUpdate(review2);
-		reviewsDao.createOrUpdate(review3);
-		reviewsDao.createOrUpdate(review4);
-		reviewsDao.createOrUpdate(review5);
+		reviewsService.createOrUpdate(review1);
+		reviewsService.createOrUpdate(review2);
+		reviewsService.createOrUpdate(review3);
+		reviewsService.createOrUpdate(review4);
+		reviewsService.createOrUpdate(review5);
 		
 		setUpOrders();
 		
 		for(Order order : ordersList)
-			ordersDao.createOrUpdate(order);
+			ordersService.createOrUpdate(order);
 	}
 	
 	private void setUpOrders() {

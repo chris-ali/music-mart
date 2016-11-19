@@ -1,4 +1,4 @@
-package com.chrisali.musicmart.model;
+package com.chrisali.musicmart.model.user;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.chrisali.musicmart.model.order.Order;
-import com.chrisali.musicmart.model.user.Address;
 
 /**
  * Country object that contains 2 and 3 digit ISO codes 

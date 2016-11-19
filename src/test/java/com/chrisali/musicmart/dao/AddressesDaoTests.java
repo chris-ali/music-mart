@@ -58,6 +58,10 @@ public class AddressesDaoTests extends DaoTestData implements DaoTests {
 		addresses = addressesDao.getPaginatedAddressesForUser(user3.getId(), 0, 10);
 		
 		assertEquals("Three addresses should be in list belonging to user 3", 3, addresses.size());
+		
+		long totalAddressesUser = addressesDao.getTotalNumberOfAddressesForUser(user2.getId());
+		
+		assertEquals("Three addresses should be in database belonging to user 2", 3, totalAddressesUser);
 	}
 
 	@Test

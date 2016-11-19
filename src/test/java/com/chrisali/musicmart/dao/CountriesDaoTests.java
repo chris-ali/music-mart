@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.chrisali.musicmart.model.Country;
+import com.chrisali.musicmart.model.user.Country;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

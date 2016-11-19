@@ -38,6 +38,10 @@ public class UsersDaoTests extends DaoTestData implements DaoTests {
 		users = usersDao.getPaginatedUsers(0, 10);
 		
 		assertEquals("Three users should be in list", 3, users.size());
+		
+		long totalUsers = usersDao.getTotalNumberOfUsers();
+		
+		assertEquals("Three users in total should be in database", 3, totalUsers);
 	}
 
 	@Test

@@ -65,6 +65,14 @@ public class ReviewsDaoTests extends DaoTestData implements DaoTests {
 		reviews = reviewsDao.getPaginatedReviewsForUser(user2.getId(), 0, 10);
 		
 		assertEquals("Two reviews should be in list for user 2", 2, reviews.size());
+		
+		long totalReviewsProduct = reviewsDao.getTotalNumberOfReviewsForProduct(product2.getId());
+
+		assertEquals("Two review in total should be in database for product 2", 2, totalReviewsProduct);
+		
+		long totalReviewsUser = reviewsDao.getTotalNumberOfReviewsForUser(user3.getId());
+		
+		assertEquals("Two review in total should be in database for user 3", 1, totalReviewsUser);
 	}
 
 	@Test

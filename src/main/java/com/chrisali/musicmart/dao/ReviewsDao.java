@@ -82,7 +82,7 @@ public class ReviewsDao extends AbstractDao {
 	 * @return total number of {@link Review} in database for a given {@link User} using HQL 
 	 */
 	public Long getTotalNumberOfReviewsForUser(int usersId) {
-		Query criteria = getSession().createQuery("Select count (id) from Review r where u.user.id =" + usersId);
+		Query criteria = getSession().createQuery("Select count (id) from Review r where r.user.id =" + usersId);
 		Long count = (Long)criteria.uniqueResult();
 		
 		closeSession();
@@ -95,7 +95,7 @@ public class ReviewsDao extends AbstractDao {
 	 * @return total number of {@link Review} in database for a given {@link Product} using HQL
 	 */
 	public Long getTotalNumberOfReviewsForProduct(int productsId) {
-		Query criteria = getSession().createQuery("Select count (id) from Review r where u.product.id =" + productsId);
+		Query criteria = getSession().createQuery("Select count (id) from Review r where r.product.id =" + productsId);
 		Long count = (Long)criteria.uniqueResult();
 		
 		closeSession();

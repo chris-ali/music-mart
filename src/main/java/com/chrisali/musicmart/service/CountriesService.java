@@ -7,7 +7,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.chrisali.musicmart.dao.CountriesDao;
-import com.chrisali.musicmart.model.Country;
+import com.chrisali.musicmart.model.user.Country;
 
 /**
  * Contains CRUD methods to manipulate {@link Country} objects in the database 

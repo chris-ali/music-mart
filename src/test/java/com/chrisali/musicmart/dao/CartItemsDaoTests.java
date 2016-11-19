@@ -48,6 +48,10 @@ public class CartItemsDaoTests extends DaoTestData implements DaoTests {
 		cartItems = cartItemsDao.getPaginatedCartItemsForUser(user3.getId(), 0, 10);
 		
 		assertEquals("One cart item should be in list for user 3", 1, cartItems.size());
+		
+		long totalCartItemsUser = cartItemsDao.getTotalNumberOfCartItemsForUser(user3.getId());
+		
+		assertEquals("One cart item should be in database for user 3", 1, totalCartItemsUser);
 	}
 
 	@Test

@@ -32,11 +32,15 @@ public class OrdersDaoTests extends DaoTestData implements DaoTests {
 		
 		List<Order> orders = ordersDao.getPaginatedOrdersForUser(user1.getId(), 0, 10);
 		
-		assertEquals("One order should be in list for user 1", 3, orders.size());
+		assertEquals("Three orders should be in list for user 1", 3, orders.size());
 		
 		orders = ordersDao.getPaginatedOrdersForUser(user3.getId(), 0, 10);
 		
 		assertEquals("No orders should be in list for user 3", 0, orders.size());
+		
+		long totalOrdersUser = ordersDao.getTotalNumberOfOrdersForUser(user1.getId());
+		
+		assertEquals("Three orders should be in database for user 1", 3, totalOrdersUser);
 	}
 
 	@Test

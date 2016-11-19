@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.chrisali.musicmart.model.Country;
+import com.chrisali.musicmart.model.user.Country;
 
 @Transactional
 @Component("countriesDao")

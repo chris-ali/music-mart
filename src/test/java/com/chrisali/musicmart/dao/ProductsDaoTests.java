@@ -35,6 +35,10 @@ public class ProductsDaoTests extends DaoTestData implements DaoTests {
 		manufacturersDao.createOrUpdate(manufacturer2);
 		manufacturersDao.createOrUpdate(manufacturer3);
 		
+		categoriesDao.createOrUpdate(category1);
+		categoriesDao.createOrUpdate(category2);
+		categoriesDao.createOrUpdate(category3);
+		
 		productsDao.createOrUpdate(product1);
 		productsDao.createOrUpdate(product2);
 		productsDao.createOrUpdate(product3);
@@ -51,6 +55,14 @@ public class ProductsDaoTests extends DaoTestData implements DaoTests {
 		products.add(productsDao.getProduct(product3.getId()));
 		
 		assertEquals("Three products should be in list", 3, products.size());
+		//FIXME
+		//long totalProductsCategory = productsDao.getTotalNumberOfProductsForCategory(category1.getId());
+		
+		//assertEquals("One product in total should be in database for category 1", 1, totalProductsCategory);
+		
+		long totalProductsManufacturer = productsDao.getTotalNumberOfProductsForManufacturer(manufacturer2.getId());
+		
+		assertEquals("One product in total should be in database for manufacturer 2", 1, totalProductsManufacturer);
 	}
 
 	@Test

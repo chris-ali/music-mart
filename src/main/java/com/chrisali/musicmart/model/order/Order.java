@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.chrisali.musicmart.model.Country;
+import com.chrisali.musicmart.model.user.Country;
 import com.chrisali.musicmart.model.user.User;
 
 @Entity

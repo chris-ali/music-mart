@@ -37,15 +37,16 @@ public class ProductsDao extends AbstractDao {
 	}
 	
 	/**
+	 * @param manufacturerId
 	 * @param pageNumber
 	 * @param resultsSize
 	 * @return paginated List of all {@link Product} in database belonging to {@link Manufacturer} using Hibernate Criteria 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Product> getPaginatedProductsForManufacturer(int manufacturers_id, int pageNumber, int resultsSize) {
+	public List<Product> getPaginatedProductsForManufacturer(int manufacturerId, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(Product.class)
 										.createAlias("manufacturer", "m")
-										.add(Restrictions.eq("m.id", manufacturers_id))
+										.add(Restrictions.eq("m.id", manufacturerId))
 										.setMaxResults(resultsSize)
 										.setFirstResult(pageNumber * resultsSize)
 										.addOrder(Order.desc("dateAdded"));
@@ -58,11 +59,12 @@ public class ProductsDao extends AbstractDao {
 	}
 	
 	/**
+	 * @param manufacturerId
 	 * @return total number of {@link Product} in database belonging to {@link User} using HQL
 	 */
-	public Long getTotalNumberOfProductsForManufacturer(int manufacturers_id) {
+	public Long getTotalNumberOfProductsForManufacturer(int manufacturerId) {
 		Query criteria = getSession().createQuery("Select count (id) from Product where manufacturers_id=:manufacturers_id")
-									 .setInteger("manufacturers_id", manufacturers_id);
+									 .setInteger("manufacturers_id", manufacturerId);
 		Long count = (Long)criteria.uniqueResult();
 		
 		closeSession();
@@ -71,15 +73,16 @@ public class ProductsDao extends AbstractDao {
 	}
 	
 	/**
+	 * @param categoryId
 	 * @param pageNumber
 	 * @param resultsSize
 	 * @return paginated List of all {@link Product} in database belonging to {@link Category} using Hibernate Criteria 
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Product> getPaginatedProductsForCategory(int categories_id, int pageNumber, int resultsSize) {
+	public List<Product> getPaginatedProductsForCategory(int categoryId, int pageNumber, int resultsSize) {
 		Criteria criteria = getSession().createCriteria(Category.class)
 										.createAlias("category", "c")
-										.add(Restrictions.eq("c.id", categories_id))
+										.add(Restrictions.eq("c.id", categoryId))
 										.setMaxResults(resultsSize)
 										.setFirstResult(pageNumber * resultsSize)
 										.addOrder(Order.desc("dateAdded"));
@@ -92,11 +95,13 @@ public class ProductsDao extends AbstractDao {
 	}
 	
 	/**
+	 * @param categoryId
 	 * @return total number of {@link Product} in database belonging to {@link Category} using HQL
 	 */
-	public Long getTotalNumberOfProductsForCategory(int categories_id) {
-		Query criteria = getSession().createQuery("Select count (id) from Product where categories_id=:categories_id")
-									 .setInteger("categories_id", categories_id);
+	//FIXME
+	public Long getTotalNumberOfProductsForCategory(int categoryId) {
+		Query criteria = getSession().createQuery("Select count (id) from Product p inner join p.categories as cats where cats.id=:categories_id")
+									 .setInteger("categories_id", categoryId);
 		Long count = (Long)criteria.uniqueResult();
 		
 		closeSession();

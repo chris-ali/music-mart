@@ -38,13 +38,17 @@ public class ManufacturersDaoTests extends DaoTestData implements DaoTests {
 		
 		manufacturers = manufacturersDao.getPaginatedManufacturers(0, 10);
 		
-		assertEquals("Two manufacturer should be in list", 2, manufacturers.size());
+		assertEquals("Two manufacturers should be in list", 2, manufacturers.size());
 		
 		manufacturersDao.createOrUpdate(manufacturer3);
 		
 		manufacturers = manufacturersDao.getPaginatedManufacturers(0, 10);
 		
-		assertEquals("Three manufacturer should be in list", 3, manufacturers.size());
+		assertEquals("Three manufacturers should be in list", 3, manufacturers.size());
+		
+		long totalCount = manufacturersDao.getTotalNumberOfManufacturers();
+		
+		assertEquals("Three manufacturers should be in database", 3, totalCount);
 	}
 
 	@Test

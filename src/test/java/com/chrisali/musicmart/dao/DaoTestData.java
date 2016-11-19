@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.chrisali.musicmart.model.Country;
 import com.chrisali.musicmart.model.order.CreditCardType;
 import com.chrisali.musicmart.model.order.Order;
 import com.chrisali.musicmart.model.order.OrderStatus;
@@ -24,6 +23,7 @@ import com.chrisali.musicmart.model.product.ProductDescription;
 import com.chrisali.musicmart.model.product.Review;
 import com.chrisali.musicmart.model.user.Address;
 import com.chrisali.musicmart.model.user.CartItem;
+import com.chrisali.musicmart.model.user.Country;
 import com.chrisali.musicmart.model.user.User;
 
 @Component

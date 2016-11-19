@@ -14,8 +14,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.chrisali.musicmart.model.Country;
-
 @Entity
 @Table(name="addresses")
 public class Address implements Serializable {

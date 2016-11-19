@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -58,7 +59,10 @@ public class Product implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="product")
 	private ProductDescription productDescription;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "products_categories", 
+			joinColumns = {@JoinColumn(name = "products_id")},
+			inverseJoinColumns = {@JoinColumn(name = "categories_id")})
 	private List<Category> categories;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

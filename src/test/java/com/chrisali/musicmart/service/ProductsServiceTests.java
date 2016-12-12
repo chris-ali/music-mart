@@ -18,11 +18,15 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.chrisali.musicmart.config.DataSourceTestConfiguration;
 import com.chrisali.musicmart.config.SecurityConfiguration;
+import com.chrisali.musicmart.config.ServiceTestConfiguration;
 import com.chrisali.musicmart.model.product.Product;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = SecurityConfiguration.class)
+@ContextConfiguration(classes = {SecurityConfiguration.class, 
+								 DataSourceTestConfiguration.class,
+								 ServiceTestConfiguration.class})
 @SpringBootTest
 @ActiveProfiles("test")
 public class ProductsServiceTests extends ServiceTestData implements ServiceTests {

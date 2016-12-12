@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.chrisali.musicmart.model.order.CreditCardType;
 import com.chrisali.musicmart.model.order.Order;
@@ -28,7 +27,6 @@ import com.chrisali.musicmart.model.user.Country;
 import com.chrisali.musicmart.model.user.User;
 
 @Component
-@ActiveProfiles("test")
 public class DaoTestData {
 	
 	// Users

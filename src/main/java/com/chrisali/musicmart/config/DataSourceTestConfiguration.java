@@ -29,9 +29,9 @@ public class DataSourceTestConfiguration {
 		DataSourceBuilder builder = DataSourceBuilder.create();
 
 		builder.driverClassName(env.getProperty("spring.datasource.driver-class-name"))
-									.url(env.getProperty("spring.datasource.url"))
-									.username(env.getProperty("spring.datasource.username"))
-									.password(env.getProperty("spring.datasource.password"));
+				.url(env.getProperty("spring.datasource.url"))
+				.username(env.getProperty("spring.datasource.username"))
+				.password(env.getProperty("spring.datasource.password"));
 
 		return builder.build();
 	}

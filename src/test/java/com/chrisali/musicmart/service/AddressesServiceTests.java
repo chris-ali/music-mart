@@ -17,10 +17,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.chrisali.musicmart.config.DataSourceTestConfiguration;
 import com.chrisali.musicmart.config.SecurityConfiguration;
+import com.chrisali.musicmart.config.ServiceTestConfiguration;
 import com.chrisali.musicmart.model.user.Address;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SecurityConfiguration.class, DataSourceTestConfiguration.class})
+@ContextConfiguration(classes = {SecurityConfiguration.class, 
+								 DataSourceTestConfiguration.class,
+								 ServiceTestConfiguration.class})
 @SpringBootTest
 public class AddressesServiceTests extends ServiceTestData implements ServiceTests {
 

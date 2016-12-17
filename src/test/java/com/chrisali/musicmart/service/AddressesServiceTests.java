@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -25,6 +26,7 @@ import com.chrisali.musicmart.model.user.Address;
 								 DataSourceTestConfiguration.class,
 								 ServiceTestConfiguration.class})
 @SpringBootTest
+@ActiveProfiles("test")
 public class AddressesServiceTests extends ServiceTestData implements ServiceTests {
 
 	@Before

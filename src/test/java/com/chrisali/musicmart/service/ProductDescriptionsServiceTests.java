@@ -112,7 +112,7 @@ public class ProductDescriptionsServiceTests extends ServiceTestData implements 
 	@Test(expected = AuthenticationCredentialsNotFoundException.class)
 	@Override
 	public void testDeleteNoAuth() {
-		testDeleteNoAuth();
+		testDelete();
 	}
 	
 	@Test

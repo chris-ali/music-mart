@@ -96,7 +96,7 @@ public class CountriesServiceTests extends ServiceTestData implements ServiceTes
 	@Test(expected = AuthenticationCredentialsNotFoundException.class)
 	@Override
 	public void testDeleteNoAuth() {
-		testDeleteNoAuth();
+		testDelete();
 	}
 	
 	@Test

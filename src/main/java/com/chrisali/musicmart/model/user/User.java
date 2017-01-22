@@ -48,10 +48,10 @@ public class User implements Serializable {
 	@Column(name="default_address_id")
 	private int defaultAddress;
 	
-	@NotBlank
 	private String password;
 	
 	@Pattern(regexp="^\\S+$")
+	@Size(min = 5, max = 20)
 	@Transient
 	private String rawPassword;
 	

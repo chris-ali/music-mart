@@ -6,3 +6,4 @@
 *.zip
 /.settings/
 /.apt_generated/
+/.factorypath
